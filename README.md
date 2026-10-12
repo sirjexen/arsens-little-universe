@@ -35,6 +35,13 @@ Repo ini sudah dikonfigurasi untuk deploy otomatis via GitHub Actions:
 3. Push ke branch `main` (atau jalankan workflow manual dari tab **Actions**).
 4. Situs live di `https://<username>.github.io/arsens-little-universe/`.
 
+> **Catatan deploy aktual:** deployment live saat ini memakai branch `gh-pages`
+> (berisi hasil `npm run build`) karena token OAuth GitHub CLI tidak memiliki
+> scope `workflow` sehingga file `.github/workflows/deploy.yml` tidak bisa
+> di-push via CLI. File workflow tetap ada di repo ini — cukup upload satu file
+> itu lewat web GitHub (Add file → Upload files) untuk mengaktifkan jalur
+> Actions, atau push dari mesin dengan token ber-scope `workflow`.
+
 `vite.config.ts` memakai `base: '/arsens-little-universe/'` agar semua path aset
 benar di bawah subpath. Kalau nama repo diganti, sesuaikan `base` menjadi
 `'/<nama-repo>/'` lalu rebuild.
