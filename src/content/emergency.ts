@@ -7,11 +7,11 @@ export const EMERGENCY: {
   mascotLines: string[];
 } = {
   alerts: [
-    '🚨 PERINGATAN: Level kangen mencapai TITIK KRITIS! 🚨',
-    '🚨 DARURAT! Seseorang kangen berat dan butuh Arsen SEGERA! 🚨',
-    '🚨 ALARM KANGEN BERBUNYI! Ini bukan latihan! 🚨',
-    '🚨 TERDETEKSI: Rindu akut stadium lanjut. Penanganan: Arsen. 🚨',
-    '🚨 BREAKING NEWS: Bunga Bengkok resmi dinyatakan kangen! 🚨',
+    'PERINGATAN: Level kangen mencapai TITIK KRITIS!',
+    'DARURAT! Seseorang kangen berat dan butuh Arsen SEGERA!',
+    'ALARM KANGEN BERBUNYI! Ini bukan latihan!',
+    'TERDETEKSI: Rindu akut stadium lanjut. Penanganan: Arsen.',
+    'BREAKING NEWS: Livia resmi dinyatakan kangen!',
   ],
   comforts: [
     'Tenang, tenang. Tarik napas. Arsen udah dikasih tahu dan lagi OTW... secara batin.',

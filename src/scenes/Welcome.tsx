@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Arsen from '../components/Arsen';
 import Bunga from '../components/Bunga';
+import { Glyph } from '../components/icons';
 import { Doodle, PaperCard, StickerButton } from '../components/ui';
 import { sfx } from '../lib/sound';
 import { WELCOME_LINES } from '../content/content';
@@ -59,7 +60,10 @@ export default function Welcome({ onEnter }: WelcomeProps) {
       </div>
 
       <div className="animate-pop-in flex w-full max-w-sm flex-col items-center gap-5">
-        <p className="font-hand text-ink-soft text-center text-2xl">dari Arsen, untuk Bunga Bengkok 🌷</p>
+        <p className="font-hand text-ink-soft text-center text-2xl">
+          dari Arsen, untuk Livia{' '}
+          <Glyph kind="flower" className="inline h-6 w-6 text-blush-500" />
+        </p>
 
         <h1 className="font-display text-ink text-center text-4xl leading-tight font-extrabold">
           Arsen's Little
@@ -95,11 +99,11 @@ export default function Welcome({ onEnter }: WelcomeProps) {
         </button>
 
         <StickerButton color="blush" onClick={enter} className="w-full px-8 py-4 text-xl" disabled={leaving}>
-          {leaving ? 'siap-siap…' : 'Masuk ke dunia Arsen ✨'}
+          {leaving ? 'siap-siap…' : 'Masuk ke dunia Arsen'}
         </StickerButton>
 
         <p className="text-ink-soft text-center text-sm">
-          lima dunia mini menunggumu: nasihat, darurat kangen, kebun, surat, dan pengukur kegemesan 💛
+          lima dunia mini menunggumu: nasihat, darurat kangen, kebun, surat, dan pengukur kegemesan
         </p>
       </div>
 

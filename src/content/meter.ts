@@ -11,5 +11,5 @@ export const METER_RESULTS: string[] = [
   'Hasil: 87% gemes, 13% nyebelin. Kombinasi sempurna. Jangan diubah-ubah.',
   'Hasil: Terdeteksi gelombang gemes radius 5 km. Tetangga (imajiner) ikut senyum-senyum.',
   'Hasil: ERROR 404 — kata "tidak gemes" tidak ditemukan dalam diri kamu.',
-  'Hasil: Level "Bunga Bengkok". Artinya: bengkok-bengkok dikit, tapi bikin candu.',
+  'Hasil: Level "Livia". Artinya: bengkok-bengkok dikit, tapi bikin candu.',
 ];

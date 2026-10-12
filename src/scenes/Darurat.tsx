@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { EMERGENCY } from '../content/content';
 import { Arsen } from '../components/Arsen';
+import { Glyph } from '../components/icons';
 import {
   PaperCard,
   SectionHeader,
@@ -114,7 +115,8 @@ export default function Darurat() {
               onClick={startEmergency}
               className="animate-heartbeat min-h-[96px] min-w-[260px] bg-blush-500 px-10 py-6 text-2xl text-paper"
             >
-              AKU KANGEN ARSEN 🚨
+              <Glyph kind="bell" className="h-8 w-8" />
+              AKU KANGEN ARSEN
             </StickerButton>
             {pressCount > 0 && (
               <p className="font-hand text-xl text-ink-soft">
@@ -162,7 +164,8 @@ export default function Darurat() {
                   </div>
                   <div className="w-full rounded-2xl bg-lav-100 px-4 py-3">
                     <p className="text-sm font-bold text-ink">
-                      🐾 Kata Arsen: <span className="font-normal">{mascotLine}</span>
+                      <Glyph kind="paw" className="inline h-5 w-5 align-[-4px]" /> Kata Arsen:{' '}
+                      <span className="font-normal">{mascotLine}</span>
                     </p>
                   </div>
                   <p className="font-hand text-xl text-ink-soft">
@@ -172,7 +175,7 @@ export default function Darurat() {
                     onClick={reset}
                     className="min-h-[44px] bg-sage-200 px-6 text-base"
                   >
-                    Tutup darurat ✅
+                    Tutup darurat <Glyph kind="check" className="h-5 w-5" />
                   </StickerButton>
                 </div>
               )}

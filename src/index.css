@@ -51,6 +51,11 @@
   --animate-heartbeat: heartbeat 1.6s ease-in-out infinite;
   --animate-shake: shake 0.5s ease-in-out;
   --animate-peek: peek 6s ease-in-out infinite;
+  --animate-twinkle: twinkle 3.2s ease-in-out infinite;
+  --animate-rain-fall: rain-fall 2.8s linear infinite;
+  --animate-petal-drift: petal-drift 9s ease-in-out infinite alternate;
+  --animate-ink-in: ink-in 0.55s ease-out both;
+  --animate-unfold: unfold 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 
   @keyframes float {
     0%, 100% { transform: translateY(0) rotate(-1deg); }
@@ -96,6 +101,39 @@
     0%, 88%, 100% { transform: translateY(110%); }
     92%, 96% { transform: translateY(18%); }
   }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.25; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  @keyframes rain-fall {
+    0% { transform: translateY(-8vh); opacity: 0; }
+    15% { opacity: 0.7; }
+    100% { transform: translateY(105vh); opacity: 0; }
+  }
+  @keyframes petal-drift {
+    from { transform: translate(0, 0) rotate(0deg); }
+    to { transform: translate(-34px, 46px) rotate(48deg); }
+  }
+  @keyframes ink-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes unfold {
+    from { opacity: 0; transform: scaleY(0.12); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+}
+
+/* Goyangan kepala bunga Livia — transform-box membuat origin relatif
+   terhadap grup kepala bunga, bukan seluruh kanvas SVG. */
+.bunga-head-sway {
+  animation: sway 5.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 92%;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
 }
 
 html {

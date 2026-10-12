@@ -8,6 +8,7 @@ import {
 } from '../content/content';
 import { Arsen } from '../components/Arsen';
 import type { ArsenExpression } from '../components/Arsen';
+import { Glyph, type GlyphKind } from '../components/icons';
 import {
   PaperCard,
   SectionHeader,
@@ -18,7 +19,53 @@ import { sfx } from '../lib/sound';
 
 type MoodChoice = MoodId | 'surprise';
 
-const REACTS = ['😂', '🥺', '💗', '🤡'] as const;
+interface ReactOption {
+  id: string;
+  icon: GlyphKind;
+  label: string;
+}
+
+const REACTS: ReactOption[] = [
+  { id: 'laugh', icon: 'laugh', label: 'ketawa' },
+  { id: 'tear', icon: 'tear', label: 'terharu' },
+  { id: 'heart', icon: 'heart', label: 'sayang' },
+  { id: 'sparkle', icon: 'sparkle', label: 'takjub' },
+];
+
+/** Nilai lama 'alu:fav-reacts' adalah emoji; petakan ke id reaksi glyph. */
+const OLD_REACT_MIGRATION: Record<string, string> = {
+  '😂': 'laugh',
+  '🥺': 'tear',
+  '💗': 'heart',
+  '🤡': 'sparkle',
+};
+
+/**
+ * Baca 'alu:fav-reacts' mentah, terjemahkan emoji lama ke id glyph,
+ * buang nilai tak dikenal, tulis balik, kembalikan hasilnya.
+ */
+function migrateStoredReacts(key: string): Record<string, string> {
+  let parsed: unknown = null;
+  try {
+    const raw = window.localStorage.getItem(key);
+    if (!raw) return {};
+    parsed = JSON.parse(raw);
+  } catch {
+    return {};
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+  const next: Record<string, string> = {};
+  for (const [id, val] of Object.entries(parsed as Record<string, unknown>)) {
+    const mapped = typeof val === 'string' ? OLD_REACT_MIGRATION[val] : undefined;
+    if (mapped) next[id] = mapped;
+  }
+  try {
+    window.localStorage.setItem(key, JSON.stringify(next));
+  } catch {
+    // penyimpanan diblokir — state tetap jalan di memori
+  }
+  return next;
+}
 
 const MOOD_EXPRESSIONS: Record<MoodId, ArsenExpression> = {
   sedih: 'love',
@@ -47,6 +94,10 @@ function moodLabel(mood: MoodId): string {
   return MOODS.find((m) => m.id === mood)?.label ?? mood;
 }
 
+function reactLabel(id: string): string {
+  return REACTS.find((r) => r.id === id)?.label ?? id;
+}
+
 function dispatchFavCount(count: number): void {
   window.dispatchEvent(
     new CustomEvent('alu:fav-count', { detail: { count } }),
@@ -57,7 +108,7 @@ export default function Nasihat() {
   const [favorites, setFavorites] = useLocalStorage<string[]>(FAV_KEY, []);
   const [reacts, setReacts] = useLocalStorage<Record<string, string>>(
     REACT_KEY,
-    {},
+    migrateStoredReacts(REACT_KEY),
   );
   const [choice, setChoice] = useState<MoodChoice | null>(null);
   const [advice, setAdvice] = useState<Advice | null>(null);
@@ -108,13 +159,13 @@ export default function Nasihat() {
     });
   }
 
-  function toggleReact(id: string, emoji: string): void {
+  function toggleReact(id: string, reactId: string): void {
     setReacts((prev) => {
       const next = { ...prev };
-      if (next[id] === emoji) {
+      if (next[id] === reactId) {
         delete next[id];
       } else {
-        next[id] = emoji;
+        next[id] = reactId;
       }
       return next;
     });
@@ -174,9 +225,7 @@ export default function Nasihat() {
             }`}
             title={mood.hint}
           >
-            <span className="text-2xl" aria-hidden="true">
-              {mood.emoji}
-            </span>
+            <Glyph kind={mood.icon} className="h-7 w-7" />
             <span className="text-sm leading-tight">{mood.label}</span>
           </StickerButton>
         ))}
@@ -189,9 +238,7 @@ export default function Nasihat() {
           }`}
           title="Biar nasib yang milih. Arsen cuma perantara."
         >
-          <span className="text-2xl" aria-hidden="true">
-            🎲
-          </span>
+          <Glyph kind="dice" className="h-7 w-7" />
           <span className="text-sm leading-tight">Surprise me!</span>
         </StickerButton>
       </div>
@@ -220,7 +267,7 @@ export default function Nasihat() {
                 onClick={() => choice && giveAdvice(choice)}
                 className="min-h-[44px] bg-butter-200 px-5 text-base"
               >
-                Nasihat lagi dong 🔄
+                Nasihat lagi dong <Glyph kind="refresh" className="h-5 w-5" />
               </StickerButton>
               <StickerButton
                 onClick={() => toggleFavorite(advice.id)}
@@ -235,33 +282,36 @@ export default function Nasihat() {
                 onClick={() => void copyAdvice(`"${advice.text}" — Arsen`)}
                 className="min-h-[44px] bg-sage-100 px-4 text-base"
               >
-                {copied === 'ok'
-                  ? 'Disalin! ✅'
-                  : copied === 'fail'
-                    ? 'Gagal nyalin 😅'
-                    : '📋 Salin'}
+                {copied === 'fail' ? (
+                  'Yah, gagal nyalin'
+                ) : (
+                  <span className="inline-flex items-center gap-1.5">
+                    {copied === 'ok' ? 'Disalin!' : 'Salin'}
+                    <Glyph kind={copied === 'ok' ? 'check' : 'copy'} className="h-5 w-5" />
+                  </span>
+                )}
               </StickerButton>
             </div>
 
             {/* Emoji reacts */}
             <div className="mt-4 flex items-center justify-center gap-2">
               <span className="text-sm text-ink-soft">Reaksi kamu:</span>
-              {REACTS.map((emoji) => {
-                const active = currentReact === emoji;
+              {REACTS.map((r) => {
+                const active = currentReact === r.icon;
                 return (
                   <button
-                    key={emoji}
+                    key={r.id}
                     type="button"
-                    onClick={() => toggleReact(advice.id, emoji)}
+                    onClick={() => toggleReact(advice.id, r.icon)}
                     aria-pressed={active}
-                    aria-label={`Reaksi ${emoji}`}
-                    className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 text-2xl transition-transform ${
+                    aria-label={`Reaksi ${r.label}`}
+                    className={`flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 transition-transform ${
                       active
                         ? 'animate-wiggle border-blush-500 bg-blush-100 scale-110'
                         : 'border-ink/15 bg-cream hover:scale-110'
                     }`}
                   >
-                    {emoji}
+                    <Glyph kind={r.icon} className="h-6 w-6" />
                   </button>
                 );
               })}
@@ -274,7 +324,7 @@ export default function Nasihat() {
             </div>
             <p className="font-hand mt-2 text-2xl text-ink-soft">
               Mood-nya lagi apa nih? Pilih di atas, biar Arsen mikirin
-              nasihatnya. 🧠
+              nasihatnya.
             </p>
           </PaperCard>
         )}
@@ -286,7 +336,7 @@ export default function Nasihat() {
           onClick={() => setShowFavs((v) => !v)}
           className="min-h-[44px] bg-lav-100 px-5 text-base"
         >
-          ⭐ Favorit ({favorites.length}) {showFavs ? '▴' : '▾'}
+          Favorit <Glyph kind="star" className="h-5 w-5" /> ({favorites.length}) {showFavs ? '▴' : '▾'}
         </StickerButton>
       </div>
 
@@ -306,16 +356,14 @@ export default function Nasihat() {
                 return (
                   <li key={id}>
                     <PaperCard className="flex items-start gap-3 px-4 py-4">
-                      <span className="text-xl" aria-hidden="true">
-                        💌
-                      </span>
+                      <Glyph kind="envelope" className="h-5 w-5 shrink-0" />
                       <div className="min-w-0 flex-1">
                         <p className="text-sm leading-snug text-ink">
                           “{item.text}”
                         </p>
                         <p className="mt-1 text-xs font-bold uppercase tracking-widest text-ink-faint">
                           {moodLabel(item.mood)}
-                          {reacts[id] ? ` · reaksi kamu: ${reacts[id]}` : ''}
+                          {reacts[id] ? ` · reaksi kamu: ${reactLabel(reacts[id])}` : ''}
                         </p>
                       </div>
                       <button

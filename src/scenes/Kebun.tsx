@@ -1,4 +1,4 @@
-// Kebun Bunga Bengkok: rawat bunga kesayangan.
+// Kebun Livia: rawat bunga kesayangan.
 // - Bunga besar di atas gundukan tanah, 5 aksi (siram/matahari/ngobrol/peluk/hias).
 // - Tiap aksi: mood bunga + bubble kalimat random dari GARDEN (tanpa pengulangan
 //   beruntun) + reaksi mini Arsen.
@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react';
 import { GARDEN } from '../content/content';
 import Arsen, { type ArsenExpression } from '../components/Arsen';
 import Bunga, { type BungaMood } from '../components/Bunga';
+import { Glyph, type GlyphKind } from '../components/icons';
 import { PaperCard, SectionHeader, StickerButton, useLocalStorage } from '../components/ui';
 import { sfx } from '../lib/sound';
 import { useEggs } from '../easter/eggs';
@@ -27,15 +28,15 @@ interface GardenState {
 
 interface DecorKind {
   id: string;
-  emoji: string;
+  icon: GlyphKind;
   label: string;
 }
 
 const DECOR_CYCLE: DecorKind[] = [
-  { id: 'mushroom', emoji: '🍄', label: 'jamur mungil' },
-  { id: 'pebble', emoji: '🪨', label: 'batu kerikil' },
-  { id: 'flag', emoji: '🚩', label: 'bendera mini' },
-  { id: 'ladybug', emoji: '🐞', label: 'kumbang imut' },
+  { id: 'mushroom', icon: 'mushroom', label: 'jamur mungil' },
+  { id: 'pebble', icon: 'pebble', label: 'batu kerikil' },
+  { id: 'flag', icon: 'flag', label: 'bendera mini' },
+  { id: 'ladybug', icon: 'ladybug', label: 'kumbang imut' },
 ];
 
 const MAX_DECOR = 6;
@@ -50,12 +51,12 @@ const DECOR_SPOTS: { left: string; bottom: string }[] = [
   { left: '55%', bottom: '23%' },
 ];
 
-const ACTIONS: { id: GardenAction; emoji: string; label: string; color: 'sage' | 'butter' | 'lav' | 'blush' | 'peach' }[] = [
-  { id: 'water', emoji: '💧', label: 'Siram', color: 'sage' },
-  { id: 'sun', emoji: '☀️', label: 'Kasih matahari', color: 'butter' },
-  { id: 'talk', emoji: '💬', label: 'Ajak ngobrol', color: 'lav' },
-  { id: 'hug', emoji: '🤗', label: 'Peluk', color: 'blush' },
-  { id: 'decorate', emoji: '🎀', label: 'Hias', color: 'peach' },
+const ACTIONS: { id: GardenAction; icon: GlyphKind; label: string; color: 'sage' | 'butter' | 'lav' | 'blush' | 'peach' }[] = [
+  { id: 'water', icon: 'drop', label: 'Siram', color: 'sage' },
+  { id: 'sun', icon: 'sun', label: 'Kasih matahari', color: 'butter' },
+  { id: 'talk', icon: 'chat', label: 'Ajak ngobrol', color: 'lav' },
+  { id: 'hug', icon: 'hug', label: 'Peluk', color: 'blush' },
+  { id: 'decorate', icon: 'ribbon', label: 'Hias', color: 'peach' },
 ];
 
 const ARSEN_REACT: Record<GardenAction, { expression: ArsenExpression; lines: string[] }> = {
@@ -90,7 +91,7 @@ const ARSEN_REACT: Record<GardenAction, { expression: ArsenExpression; lines: st
   decorate: {
     expression: 'proud',
     lines: [
-      'Interior designer kebun: kamu. Klien: bunga bengkok. Rating: 5 bintang.',
+      'Interior designer kebun: kamu. Klien: Livia. Rating: 5 bintang.',
       'Estetiknya naik 200%. Siap-siap masuk FYP kebun.',
     ],
   },
@@ -279,22 +280,22 @@ export default function Kebun() {
       lineKey.current += 1;
       setLine({
         key: lineKey.current,
-        text: 'Hihihi, geli! Jangan dicolek-colek terus... nanti bunganya makin sayang. 🥰',
+        text: 'Hihihi, geli! Jangan dicolek-colek terus... nanti bunganya makin sayang.',
       });
     }
   };
 
-  const stats: { emoji: string; value: number; label: string }[] = [
-    { emoji: '💧', value: garden.water, label: 'kali disiram' },
-    { emoji: '☀️', value: garden.sun, label: 'kali dijemur' },
-    { emoji: '💬', value: garden.talks, label: 'kali ngobrol' },
-    { emoji: '🤗', value: garden.hugs, label: 'kali dipeluk' },
+  const stats: { icon: GlyphKind; value: number; label: string }[] = [
+    { icon: 'drop', value: garden.water, label: 'kali disiram' },
+    { icon: 'sun', value: garden.sun, label: 'kali dijemur' },
+    { icon: 'chat', value: garden.talks, label: 'kali ngobrol' },
+    { icon: 'hug', value: garden.hugs, label: 'kali dipeluk' },
   ];
 
   return (
-    <section aria-label="Kebun Bunga Bengkok" className="mx-auto w-full max-w-xl px-4 py-6">
+    <section aria-label="Kebun Livia" className="mx-auto w-full max-w-xl px-4 py-6">
       <SectionHeader
-        title="Kebun Bunga Bengkok"
+        title="Kebun Livia"
         subtitle="Rawat bunga kesayanganmu. Dia bengkok, tapi dia bahagia."
         doodle="heart"
       />
@@ -337,11 +338,11 @@ export default function Kebun() {
             className="absolute bottom-0 left-1/2 h-28 w-[94%] -translate-x-1/2 rounded-[50%] bg-gradient-to-b from-[#b07a4f] to-[#7c4f2e]"
           />
           {/* Rumput */}
-          <div aria-hidden="true" className="absolute bottom-[4.5rem] left-[12%] text-2xl">
-            🌱
+          <div aria-hidden="true" className="absolute bottom-[4.5rem] left-[12%]">
+            <Glyph kind="grass" className="h-8 w-8 text-sage-600" />
           </div>
-          <div aria-hidden="true" className="absolute bottom-[5rem] right-[10%] text-2xl">
-            🌱
+          <div aria-hidden="true" className="absolute bottom-[5rem] right-[10%]">
+            <Glyph kind="grass" className="h-8 w-8 text-sage-600" />
           </div>
 
           {/* Dekorasi mengelilingi gundukan */}
@@ -354,8 +355,8 @@ export default function Kebun() {
                 className="absolute z-10"
                 style={{ left: spot.left, bottom: spot.bottom, rotate: `${((i * 37) % 25) - 12}deg` }}
               >
-                <span role="img" aria-label={item.label} className="animate-pop-in block text-3xl">
-                  {item.emoji}
+                <span role="img" aria-label={item.label} className="animate-pop-in block">
+                  <Glyph kind={item.icon} className="block h-9 w-9" />
                 </span>
               </span>
             );
@@ -365,7 +366,7 @@ export default function Kebun() {
           <button
             type="button"
             onClick={handleFlowerClick}
-            aria-label="Colek bunga bengkok (colek 5x cepat ada kejutan)"
+            aria-label="Colek Livia (colek 5x cepat ada kejutan)"
             className="absolute bottom-14 left-1/2 z-10 -translate-x-1/2 rounded-full p-2"
           >
             <span key={wiggleKey} className="animate-wiggle block">
@@ -379,7 +380,7 @@ export default function Kebun() {
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
         {ACTIONS.map((a) => (
           <StickerButton key={a.id} onClick={() => doAction(a.id)} color={a.color}>
-            <span aria-hidden="true">{a.emoji}</span>
+            <Glyph kind={a.icon} className="h-6 w-6" />
             {a.label}
           </StickerButton>
         ))}
@@ -402,11 +403,11 @@ export default function Kebun() {
       <div className="mt-4 flex flex-wrap items-center justify-center gap-2" aria-label="Statistik kebun">
         {stats.map((s) => (
           <span key={s.label} className="doodle-frame bg-paper px-3 py-1.5 text-xs text-ink-soft">
-            <span aria-hidden="true">{s.emoji}</span> {s.value} <span className="sr-only">{s.label}</span>
+            <Glyph kind={s.icon} className="inline h-4 w-4 align-[-3px]" /> {s.value} <span className="sr-only">{s.label}</span>
           </span>
         ))}
         <span className="doodle-frame bg-paper px-3 py-1.5 text-xs text-ink-soft">
-          🎀 {garden.decor.length}/{MAX_DECOR} dekorasi
+          <Glyph kind="ribbon" className="inline h-4 w-4 align-[-3px]" /> {garden.decor.length}/{MAX_DECOR} dekorasi
         </span>
       </div>
     </section>

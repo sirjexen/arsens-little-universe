@@ -3,6 +3,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { eggEvents, eggMeta, type EggId } from './eggs';
+import { Doodle } from '../components/ui';
 import { sfx } from '../lib/sound';
 
 interface ToastItem {
@@ -47,9 +48,7 @@ export default function EggToasts() {
           role="status"
           className="paper-card animate-pop-in pointer-events-auto flex items-start gap-2 px-4 py-3"
         >
-          <span aria-hidden="true" className="text-2xl leading-none">
-            🎉
-          </span>
+          <Doodle kind="star" className="h-6 w-6 text-butter-400" />
           <div className="min-w-0 flex-1">
             <p className="font-display text-sm font-bold text-ink">
               Pencapaian rahasia: {t.title}

@@ -156,7 +156,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'ngambek-10',
     mood: 'ngambek',
-    text: 'Senyum dikit dong. Nih Arsen kasih senyum duluan: 🙂. Sekarang giliran kamu.',
+    text: 'Senyum dikit dong. Nih Arsen kasih senyum duluan. Sekarang giliran kamu.',
   },
 
   // ---------- OVERTHINKING ----------

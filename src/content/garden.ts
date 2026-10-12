@@ -1,4 +1,4 @@
-// Teks-teks untuk kebun interaktif (bunga bengkok).
+// Teks-teks untuk kebun interaktif (Livia si bunga).
 // Setiap aksi nampilin satu kalimat random dari list-nya.
 
 export const GARDEN: {
@@ -10,14 +10,14 @@ export const GARDEN: {
   idle: string[];
 } = {
   water: [
-    'Gluk gluk gluk... segar! Bunga bengkok-nya bilang makasih. 💧',
+    'Gluk gluk gluk... segar! Livia bilang makasih sambil goyang-goyang.',
     'Disiram! Bunganya langsung tegak... eh, tetap bengkok ding. Tapi happy.',
     'Airnya pas, nggak kebanyakan. Arsen udah riset: bengkok itu gaya, bukan dehidrasi.',
     'Siram lagi besok ya. Konsisten itu kunci, kata motivator kebun.',
     'Bunganya minum lahap banget. Kayak kamu kalau dikasih es teh manis.',
   ],
   sun: [
-    'Jemur dulu biar anget. Vitamin D gratis, nggak perlu beli. ☀️',
+    'Jemur dulu biar anget. Vitamin D gratis, nggak perlu beli di apotek.',
     'Mataharinya pas! Bunganya langsung mekar... dengan gaya bengkok khasnya.',
     'Fotosintesis mode ON. Bunganya lagi masak makanan sendiri. Pinter.',
     'Kena matahari dikit, langsung glowing. Kayak kamu habis skincare.',
@@ -28,17 +28,17 @@ export const GARDEN: {
     'Bunganya dengerin dengan saksama. Dia pendengar yang baik, nggak pernah motong omongan.',
     '"Tumbuh yang sehat ya. Nanti kalau udah gede, jangan lupa traktir Arsen."',
     'Ngobrol sama bunga: 10/10, nggak di-judge. Lebih aman dari curhat ke grup.',
-    '"Kamu tahu nggak, kamu dinamain Bunga Bengkok karena ada yang sayang banget sama yang bengkok-bengkok."',
+    '"Kamu tahu nggak, bunga ini dinamain Livia karena ada yang sayang banget sama yang bengkok-bengkok."',
   ],
   hug: [
-    'Peluk! Bunganya agak kaget tapi senang. Batangnya makin bengkok saking happy. 🤗',
+    'Peluk! Bunganya agak kaget tapi senang. Batangnya makin bengkok saking happy.',
     'Pelukan anget tersalurkan. Bunganya sekarang officially bunga kesayangan.',
     'Hati-hati, jangan kenceng-kenceng. Sayang bunganya, kayak Arsen sayang kamu.',
     'Bunganya meleleh... secara emosional. Secara fisik dia tetap bunga.',
-    'Peluk virtual tercatat! Bunganya kasih kamu satu kelopak sebagai balasan. 🌸',
+    'Peluk virtual tercatat! Bunganya kasih kamu satu kelopak sebagai balasan. Simpen baik-baik ya.',
   ],
   decorate: [
-    'Dekorasi dipasang! Kebunnya sekarang aesthetic. Siap-siap masuk FYP. ✨',
+    'Dekorasi dipasang! Kebunnya sekarang aesthetic. Siap-siap masuk FYP kebun-kebun.',
     'Tambah pita di sini... tambah lampu di sana... jadi deh kebun impian.',
     'Bunganya ngerasa kayak lagi photoshoot. Gayanya langsung sok model.',
     'Dekorasi level sultan! Bunganya sampai malu-malu.',

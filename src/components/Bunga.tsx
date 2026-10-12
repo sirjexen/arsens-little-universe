@@ -1,5 +1,7 @@
-// "Bunga Bengkok": bunga bertangkai bengkok yang disengaja,
+// "Livia": bunga bertangkai bengkok yang disengaja (maskot untuk Livia),
 // kelopak pink merona, wajah imut, dan daun mungil.
+// Kepala bunga bergoyang pelan (bunga-head-sway) — hormat pada
+// prefers-reduced-motion lewat CSS global.
 // Root SVG membawa data-egg="flower" — dipakai sistem easter egg.
 
 export type BungaMood = 'happy' | 'sleepy' | 'thirsty' | 'love' | 'wow';
@@ -8,6 +10,8 @@ interface BungaProps {
   mood?: BungaMood;
   size?: number;
   className?: string;
+  /** Goyangan idle kepala bunga. Default true. */
+  sway?: boolean;
 }
 
 const INK = '#4a3b52';
@@ -107,7 +111,7 @@ function Face({ mood }: { mood: BungaMood }) {
   }
 }
 
-export function Bunga({ mood = 'happy', size = 96, className = '' }: BungaProps) {
+export function Bunga({ mood = 'happy', size = 96, className = '', sway = true }: BungaProps) {
   const petals = [0, 60, 120, 180, 240, 300];
   return (
     <svg
@@ -117,7 +121,7 @@ export function Bunga({ mood = 'happy', size = 96, className = '' }: BungaProps)
       className={className}
       data-egg="flower"
       role="img"
-      aria-label={`Bunga Bengkok, mood ${mood}`}
+      aria-label={`Livia, si bunga bengkok, mood ${mood}`}
     >
       {/* pot mungil */}
       <path d="M42 120 h36 l-6 24 h-24 Z" fill="#f0a06a" stroke={INK} strokeWidth={3} strokeLinejoin="round" />
@@ -133,24 +137,27 @@ export function Bunga({ mood = 'happy', size = 96, className = '' }: BungaProps)
       {/* daun = tangan mungil */}
       <path d="M59 92 q-18 -2 -24 -18 q18 -2 24 18 Z" fill={LEAF} stroke={INK} strokeWidth={2.5} strokeLinejoin="round" />
       <path d="M66 78 q18 -4 22 -20 q-16 0 -22 20 Z" fill={LEAF} stroke={INK} strokeWidth={2.5} strokeLinejoin="round" />
-      {/* kelopak */}
-      {petals.map((a, i) => (
-        <ellipse
-          key={a}
-          cx={HX}
-          cy={HY - 16}
-          rx={9.5}
-          ry={16}
-          transform={`rotate(${a} ${HX} ${HY})`}
-          fill={i % 2 === 0 ? PETAL : PETAL_DEEP}
-          opacity={i % 2 === 0 ? 1 : 0.75}
-          stroke={INK}
-          strokeWidth={2.5}
-        />
-      ))}
-      {/* wajah */}
-      <circle cx={HX} cy={HY} r={12} fill={CENTER} stroke={INK} strokeWidth={2.5} />
-      <Face mood={mood} />
+      {/* kepala bunga: bergoyang pelan tertiup angin */}
+      <g className={sway ? 'bunga-head-sway' : undefined}>
+        {/* kelopak */}
+        {petals.map((a, i) => (
+          <ellipse
+            key={a}
+            cx={HX}
+            cy={HY - 16}
+            rx={9.5}
+            ry={16}
+            transform={`rotate(${a} ${HX} ${HY})`}
+            fill={i % 2 === 0 ? PETAL : PETAL_DEEP}
+            opacity={i % 2 === 0 ? 1 : 0.75}
+            stroke={INK}
+            strokeWidth={2.5}
+          />
+        ))}
+        {/* wajah */}
+        <circle cx={HX} cy={HY} r={12} fill={CENTER} stroke={INK} strokeWidth={2.5} />
+        <Face mood={mood} />
+      </g>
     </svg>
   );
 }

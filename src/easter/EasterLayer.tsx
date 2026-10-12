@@ -8,6 +8,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useEggs } from './eggs';
+import { Doodle } from '../components/ui';
 import { sfx } from '../lib/sound';
 
 const MASCOT_CLICKS_NEEDED = 7;
@@ -103,10 +104,10 @@ export default function EasterLayer() {
               <span
                 key={i}
                 aria-hidden="true"
-                className="animate-pop-in absolute text-lg text-butter-400"
+                className="animate-pop-in absolute"
                 style={{ left: s.left, top: s.top, animationDelay: s.delay }}
               >
-                ✦
+                <Doodle kind="sparkle" className="h-5 w-5 text-butter-400" />
               </span>
             ))}
           </span>

@@ -5,7 +5,8 @@
 export { MOODS } from './moods';
 export type { MoodId, MoodMeta, Advice } from './moods';
 export { ADVICE } from './advice';
-export { LETTER } from './letter';
+export { LETTERS } from './letter';
+export type { Letter, LetterAnnotation, LetterAtmosphere } from './letter';
 export { GARDEN } from './garden';
 export { EMERGENCY } from './emergency';
 export { METER_RESULTS } from './meter';

@@ -2,6 +2,8 @@
 // Kalau mau nambah mood baru, tambah satu object di MOODS di bawah,
 // terus tambah nasihatnya di advice.ts.
 
+import type { GlyphKind } from '../components/icons';
+
 export type MoodId =
   | 'sedih'
   | 'capek'
@@ -14,7 +16,7 @@ export type MoodId =
 export interface MoodMeta {
   id: MoodId;
   label: string;
-  emoji: string;
+  icon: GlyphKind;
   hint: string;
 }
 
@@ -28,43 +30,43 @@ export const MOODS: MoodMeta[] = [
   {
     id: 'sedih',
     label: 'Sedih',
-    emoji: '😢',
+    icon: 'tear',
     hint: 'Lagi pengen nangis? Sini, sandar dulu.',
   },
   {
     id: 'capek',
     label: 'Capek',
-    emoji: '😮‍💨',
+    icon: 'moon',
     hint: 'Energi tinggal 2%? Cas dulu di sini.',
   },
   {
     id: 'ngambek',
     label: 'Ngambek',
-    emoji: '😤',
+    icon: 'cloud',
     hint: 'Ngambek boleh, tapi jangan lupa makan.',
   },
   {
     id: 'overthinking',
     label: 'Overthinking',
-    emoji: '🌀',
+    icon: 'spiral',
     hint: 'Otak muter terus? Biar Arsen yang matiin tombolnya.',
   },
   {
     id: 'kangen',
     label: 'Kangen',
-    emoji: '🥺',
+    icon: 'heart',
     hint: 'Kangen seseorang yang sok sibuk? Itu Arsen.',
   },
   {
     id: 'seneng',
     label: 'Seneng',
-    emoji: '🥳',
+    icon: 'sun',
     hint: 'Lagi happy? Biar makin happy.',
   },
   {
     id: 'ngawur',
     label: 'Ngawur',
-    emoji: '🤪',
+    icon: 'dice',
     hint: 'Nggak butuh nasihat, cuma butuh ketawa ngawur.',
   },
 ];

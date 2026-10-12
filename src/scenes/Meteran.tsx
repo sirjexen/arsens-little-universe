@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { METER_RESULTS } from '../content/content';
 import { Arsen } from '../components/Arsen';
+import { Glyph } from '../components/icons';
 import {
   PaperCard,
   SectionHeader,
@@ -186,13 +187,13 @@ export default function Meteran() {
             disabled={running}
             className="min-h-[56px] min-w-[220px] bg-lav-200 px-8 py-3 text-xl disabled:opacity-60"
           >
-            {hasRun ? 'Ukur lagi! 🔬' : 'UKUR KEGEMESAN 🔬'}
+            {hasRun ? 'Ukur lagi!' : 'UKUR KEGEMESAN'} <Glyph kind="gauge" className="h-6 w-6" />
           </StickerButton>
         </div>
       </PaperCard>
 
       <p className="font-hand mt-4 text-center text-xl text-ink-soft">
-        hasil tidak valid secara ilmiah, tapi valid secara perasaan 💗
+        hasil tidak valid secara ilmiah, tapi valid secara perasaan
       </p>
     </div>
   );

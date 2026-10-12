@@ -8,6 +8,7 @@ import Meteran from './scenes/Meteran';
 import EggToasts from './easter/EggToasts';
 import EasterLayer from './easter/EasterLayer';
 import Arsen from './components/Arsen';
+import { Glyph, type GlyphKind } from './components/icons';
 import { Doodle, useLocalStorage } from './components/ui';
 import { sfx } from './lib/sound';
 
@@ -16,22 +17,22 @@ type Scene = 'welcome' | 'nasihat' | 'darurat' | 'kebun' | 'surat' | 'meter';
 interface Tab {
   id: Exclude<Scene, 'welcome'>;
   label: string;
-  icon: string;
+  icon: GlyphKind;
 }
 
 const TABS: Tab[] = [
-  { id: 'nasihat', label: 'Nasihat', icon: '💬' },
-  { id: 'darurat', label: 'Darurat', icon: '🆘' },
-  { id: 'kebun', label: 'Kebun', icon: '🌱' },
-  { id: 'surat', label: 'Surat', icon: '💌' },
-  { id: 'meter', label: 'Gemes', icon: '🥰' },
+  { id: 'nasihat', label: 'Nasihat', icon: 'chat' },
+  { id: 'darurat', label: 'Darurat', icon: 'bell' },
+  { id: 'kebun', label: 'Kebun', icon: 'sprout' },
+  { id: 'surat', label: 'Surat', icon: 'envelope' },
+  { id: 'meter', label: 'Gemes', icon: 'heart' },
 ];
 
 const SCENE_TITLES: Record<Exclude<Scene, 'welcome'>, string> = {
   nasihat: 'Mesin Nasihat',
   darurat: 'Tombol Darurat Kangen',
   kebun: 'Kebun Interaktif',
-  surat: 'Surat Rahasia',
+  surat: 'Letters for Livia',
   meter: 'Pengukur Kegemesan',
 };
 
@@ -111,7 +112,7 @@ export default function App() {
             aria-pressed={soundOn}
             className="border-ink bg-paper flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border-2 text-xl shadow-[0_3px_0_rgba(74,59,82,0.18)] active:translate-y-[2px] active:shadow-none"
           >
-            <span aria-hidden="true">{soundOn ? '🔊' : '🔇'}</span>
+            <Glyph kind={soundOn ? 'volume' : 'volume-off'} className="h-6 w-6" />
             <span className="sr-only">{soundOn ? 'suara nyala' : 'suara mati'}</span>
           </button>
         </div>
@@ -131,7 +132,7 @@ export default function App() {
                     active ? 'bg-blush-200 text-ink' : 'text-ink-soft hover:bg-cream-deep'
                   }`}
                 >
-                  <span aria-hidden="true">{t.icon}</span>
+                  <Glyph kind={t.icon} className="h-6 w-6" />
                   {t.label}
                 </button>
               );
@@ -156,7 +157,7 @@ export default function App() {
             <Doodle kind="heart" className="text-blush-500 h-4 w-4" />
           </div>
           <p className="font-hand text-ink-soft text-xl">
-            dibuat dengan sayang oleh Arsen, buat Bunga Bengkok 🌷
+            dibuat dengan sayang oleh Arsen, buat Livia
           </p>
           <p className="text-ink-faint text-xs">{SCENE_TITLES[scene]} — semoga harimu semanis kamu</p>
         </div>
@@ -181,9 +182,7 @@ export default function App() {
                   active ? 'text-blush-700' : 'text-ink-soft'
                 }`}
               >
-                <span aria-hidden="true" className={`text-2xl ${active ? 'animate-wiggle' : ''}`}>
-                  {t.icon}
-                </span>
+                <Glyph kind={t.icon} className={`h-6 w-6 ${active ? 'animate-wiggle' : ''}`} />
                 <span className={`font-display text-xs font-bold ${active ? '' : 'font-semibold'}`}>
                   {t.label}
                 </span>
