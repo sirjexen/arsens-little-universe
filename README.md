@@ -2,9 +2,31 @@
 
 Website kado interaktif bergaya storybook — hadiah digital dari **Arsen** untuk **Livia**.
 Berisi Mesin Nasihat Arsen™, Tombol Darurat Kangen, Kebun Livia, Letters for Livia (3 surat),
-Mesin Pengukur Kegemesan, dan easter egg tersembunyi. Seluruh teks berbahasa Indonesia kasual.
+Mesin Pengukur Kegemesan, **game Pasangan Bunga** (memory match), **Pantun Arsen** (18 pantun gombal),
+dan easter egg tersembunyi. Seluruh teks berbahasa Indonesia kasual.
 
 **Live:** https://sirjexen.github.io/arsens-little-universe/
+
+## Revisi 3 — Game, Pantun & "Lili" (2026-10-13)
+
+- **Investigasi bug Mesin Pengukur Kegemesan:** tidak ditemukan bug teknis apa pun
+  (build lokal + bundle produksi live diuji headless: hasil muncul, jarum
+  beranimasi, 0 console/page error di semua skenario). Satu-satunya "error" yang
+  bisa muncul adalah teks lelucon di `src/content/meter.ts` ("sisanya error karena
+  kegemesanmu overload sistem", "ERROR 404") — kemungkinan Livia/penguji membaca
+  lelucon itu sebagai error beneran. Tidak ada perubahan kode pada meteran.
+- **Baru: Pasangan Bunga** (`src/scenes/Game.tsx`) — game memory-match 8 pasang
+  kartu ilustrasi SVG (tulip, daisy, matahari, bintang, hati, daun, jamur, pelangi):
+  layar mulai + rekor terbaik, penghitung langkah & timer, godaan Arsen saat salah
+  pasang (tanpa hukuman), layar menang dengan 1–3 bintang + tombol main lagi.
+  Rekor tersimpan (`alu:game-best`). Ikon nav: `dice`.
+- **Baru: Pantun Arsen** (`src/scenes/Pantun.tsx`, konten `src/content/pantun.ts`) —
+  18 pantun gombal-manis orisinal tulisan tangan (2 sampiran + 2 isi), tombol
+  "Pantun lagi" (tidak mengulang langsung), tombol salin, counter "pantun ke-N
+  dari 18", favorit tersimpan (`alu:pantun-favs`). Ikon nav: `sparkle`.
+- **Panggilan "Lili":** 11 sisipan natural di `advice.ts`, `letter.ts`,
+  `emergency.ts`, `misc.ts` (+ 2 pantun) — sesekali, sisanya tetap "Livia".
+- Navigasi kini 7 tab (mobile: grid 7 kolom, label pendek).
 
 ## Revisi 2 — "Letters for Livia"
 
@@ -71,6 +93,7 @@ Semua tulisan terpusat di `src/content/` — tidak perlu ngerti React:
 | `src/content/garden.ts`  | Celotehan kebun (siram, matahari, peluk…) |
 | `src/content/emergency.ts` | Peringatan & penghibur tombol darurat   |
 | `src/content/meter.ts`   | Hasil lucu Mesin Pengukur Kegemesan      |
+| `src/content/pantun.ts`  | 18 pantun gombal Pantun Arsen            |
 | `src/content/misc.ts`    | Sapaan welcome & pencapaian rahasia      |
 | `src/content/moods.ts`   | Daftar kategori mood (+ ikon Glyph)      |
 
@@ -85,7 +108,7 @@ src/
   content/      # semua teks (editable)
   components/   # Arsen (maskot SVG), Bunga (Livia si bunga), icons (sistem Glyph),
                 # Ambience (animasi suasana surat), ui kit
-  scenes/       # Welcome, Nasihat, Darurat, Kebun, Surat, Meteran
+  scenes/       # Welcome, Nasihat, Darurat, Kebun, Surat, Meteran, Game, Pantun
   easter/       # sistem pencapaian rahasia + lapisan hotspot tersembunyi
   lib/          # sfx WebAudio mungil (default MATI, opt-in)
   App.tsx       # router scene + navigasi
@@ -97,6 +120,7 @@ src/
 - React 18 + TypeScript + Vite 5 + Tailwind CSS v4, tanpa UI framework berat.
 - Maskot & ilustrasi 100% SVG/CSS — tanpa aset berbayar.
 - Persistensi: `localStorage` (`alu:favorites`, `alu:fav-reacts`, `alu:garden`, `alu:eggs`,
-  `alu:sound`, `alu:emergency-count`, `alu:letters-read`, `alu:calm-mode`). Tidak ada backend.
+  `alu:sound`, `alu:emergency-count`, `alu:letters-read`, `alu:calm-mode`,
+  `alu:game-best`, `alu:pantun-favs`, `alu:pantun-idx`). Tidak ada backend.
 - Mobile-first (320px+), `prefers-reduced-motion` dihormati, suara default mati.
 - Font: Baloo 2 (display), Nunito (body), Caveat (tulisan tangan) via Google Fonts.

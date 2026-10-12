@@ -16,6 +16,7 @@ src/content/
 | `garden.ts` | Kalimat-kalimat kebun bunga bengkok (disiram, dijemur, diajak ngobrol, dipeluk, didekor, lagi idle). |
 | `emergency.ts` | Teks tombol darurat kangen (peringatan heboh, kalimat penenang, celetukan maskot). |
 | `meter.ts` | 10 hasil lucu pengukur kegemesan. |
+| `pantun.ts` | 18 pantun gombal (format: 2 baris sampiran + 2 baris isi). |
 | `misc.ts` | Sapaan welcome, achievement rahasia (easter egg), dan teks kalau halaman favorit masih kosong. |
 | `content.ts` | Cuma pintu masuk — **jangan edit file ini.** |
 
