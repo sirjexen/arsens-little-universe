@@ -30,8 +30,8 @@ export const LETTERS: Letter[] = [
     atmosphere: 'rain',
     sealColor: '#8f76cc',
     paragraphs: [
-      'Hai, Livia. Kalau hari ini rasanya berat banget, taruh dulu semuanya. Tugas, pikiran, ekspektasi orang-orang — taruh di lantai. Nggak bakal kabur kok.',
-      'Kamu nggak harus kuat terus. Hari ini boleh istirahat dulu, besok baru gas lagi. Dunia nggak akan runtuh cuma karena kamu rebahan.',
+      'Hai, Lili. Kalau hari ini rasanya berat banget, taruh dulu semuanya. Tugas, pikiran, ekspektasi orang-orang — taruh di lantai. Nggak bakal kabur kok.',
+      'Lili nggak harus kuat terus. Hari ini boleh istirahat dulu, besok baru gas lagi. Dunia nggak akan runtuh cuma karena kamu rebahan.',
       'Dan kalau kamu butuh yang dengerin, Arsen di sini. Versi aslinya mungkin lagi jauh, tapi telinganya selalu nyala buat kamu.',
       'Oh iya, satu lagi: kamu udah ngelewatin hari-hari seberat ini sebelumnya, dan kamu masih di sini. Itu artinya kamu lebih kuat dari hari berat mana pun.',
     ],
@@ -58,10 +58,10 @@ export const LETTERS: Letter[] = [
     atmosphere: 'sunset',
     sealColor: '#e0709c',
     paragraphs: [
-      'Lagi kangen ya? Ketahuan. Tenang, Arsen juga kangen kok. Ini pengumuman resmi, bukan cuma perasaan kamu doang.',
+      'Lagi kangen ya, Lili? Ketahuan. Tenang, Arsen juga kangen kok. Ini pengumuman resmi, bukan cuma perasaan kamu doang.',
       'Jarak emang nyebelin. Tapi dengerin: hati kita nggak LDR. Hati kita mah tetanggaan, pagarnya doang yang agak jauh.',
       'Sambil nunggu ketemu, simpen kangennya baik-baik. Nanti kita tukerin pas ketemu. Kursnya lagi bagus: satu kangen sama dengan sepuluh pelukan.',
-      'Jadi tahan dikit ya. Nanti kalau udah ketemu, Arsen yang pertama nyamperin. Janji.',
+      'Jadi tahan dikit ya, Lili. Nanti kalau udah ketemu, Arsen yang pertama nyamperin. Janji.',
     ],
     sign: 'Dari Arsen, yang kangennya juga nggak kalah',
     annotations: [

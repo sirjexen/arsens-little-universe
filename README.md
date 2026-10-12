@@ -1,10 +1,24 @@
-# 🌷 Arsen's Little Universe
+# Arsen's Little Universe
 
-Website kado interaktif bergaya storybook — hadiah digital dari **Arsen** untuk **Bunga Bengkok**.
-Berisi Mesin Nasihat Arsen™, Tombol Darurat Kangen, Kebun Bunga Bengkok, Surat Rahasia,
+Website kado interaktif bergaya storybook — hadiah digital dari **Arsen** untuk **Livia**.
+Berisi Mesin Nasihat Arsen™, Tombol Darurat Kangen, Kebun Livia, Letters for Livia (3 surat),
 Mesin Pengukur Kegemesan, dan easter egg tersembunyi. Seluruh teks berbahasa Indonesia kasual.
 
 **Live:** https://sirjexen.github.io/arsens-little-universe/
+
+## Revisi 2 — "Letters for Livia"
+
+- Hampir semua emoji dihapus dari situs; digantikan sistem ikon SVG `Glyph`
+  (`src/components/icons.tsx`, 31 ikon konsisten gaya hand-drawn).
+- "Surat Rahasia" menjadi **Letters for Livia**: 3 surat ("Untuk hari yang berat",
+  "Kalau lagi kangen", "Nggak ada alasan khusus"), masing-masing dengan atmosfer
+  animasinya sendiri (hujan / senja / bintang), koreografi amplop (terlipat buka →
+  surat meluncur → kertas terbentang → tinta muncul), anotasi tulisan tangan
+  interaktif, dan kejutan tersembunyi di tiap surat.
+- Maskot bunga kini bernama **Livia** (tetap bengkok, tetap gemes) dengan goyangan
+  idle; penamaan "Bunga Bengkok" diganti "Livia" di seluruh situs.
+- **Mode tenang**: mematikan koreografi & animasi ambien (tersimpan, menghormati
+  `prefers-reduced-motion`).
 
 ## Cara menjalankan
 
@@ -46,19 +60,19 @@ Repo ini sudah dikonfigurasi untuk deploy otomatis via GitHub Actions:
 benar di bawah subpath. Kalau nama repo diganti, sesuaikan `base` menjadi
 `'/<nama-repo>/'` lalu rebuild.
 
-## Mengedit konten (untuk Arsen ✏️)
+## Mengedit konten (untuk Arsen)
 
 Semua tulisan terpusat di `src/content/` — tidak perlu ngerti React:
 
 | File                 | Isi                                      |
 | -------------------- | ---------------------------------------- |
 | `src/content/advice.ts`  | 70+ nasihat Mesin Nasihat (per kategori mood) |
-| `src/content/letter.ts`  | Isi Surat Rahasia dari Arsen             |
+| `src/content/letter.ts`  | 3 surat Letters for Livia (judul, paragraf, anotasi, kejutan — semua editable) |
 | `src/content/garden.ts`  | Celotehan kebun (siram, matahari, peluk…) |
 | `src/content/emergency.ts` | Peringatan & penghibur tombol darurat   |
 | `src/content/meter.ts`   | Hasil lucu Mesin Pengukur Kegemesan      |
 | `src/content/misc.ts`    | Sapaan welcome & pencapaian rahasia      |
-| `src/content/moods.ts`   | Daftar kategori mood                     |
+| `src/content/moods.ts`   | Daftar kategori mood (+ ikon Glyph)      |
 
 Panduan lengkap (ditulis untuk non-programmer, bahasa Indonesia):
 baca **`CONTENT_GUIDE.md`**. Aturan penting: jangan hapus tanda kutip/koma,
@@ -69,7 +83,8 @@ setiap pesan harus unik, dan `id` nasihat tidak boleh diubah setelah difavoritka
 ```
 src/
   content/      # semua teks (editable)
-  components/   # Arsen (maskot SVG), Bunga (bunga bengkok), ui kit
+  components/   # Arsen (maskot SVG), Bunga (Livia si bunga), icons (sistem Glyph),
+                # Ambience (animasi suasana surat), ui kit
   scenes/       # Welcome, Nasihat, Darurat, Kebun, Surat, Meteran
   easter/       # sistem pencapaian rahasia + lapisan hotspot tersembunyi
   lib/          # sfx WebAudio mungil (default MATI, opt-in)
@@ -81,7 +96,7 @@ src/
 
 - React 18 + TypeScript + Vite 5 + Tailwind CSS v4, tanpa UI framework berat.
 - Maskot & ilustrasi 100% SVG/CSS — tanpa aset berbayar.
-- Persistensi: `localStorage` (`alu:favorites`, `alu:garden`, `alu:eggs`, `alu:sound`,
-  `alu:emergency-count`). Tidak ada backend.
+- Persistensi: `localStorage` (`alu:favorites`, `alu:fav-reacts`, `alu:garden`, `alu:eggs`,
+  `alu:sound`, `alu:emergency-count`, `alu:letters-read`, `alu:calm-mode`). Tidak ada backend.
 - Mobile-first (320px+), `prefers-reduced-motion` dihormati, suara default mati.
 - Font: Baloo 2 (display), Nunito (body), Caveat (tulisan tangan) via Google Fonts.

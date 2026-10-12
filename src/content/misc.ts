@@ -3,7 +3,7 @@
 
 // Sapaan di scene pembuka (dipilih random).
 export const WELCOME_LINES: string[] = [
-  'Hai Livia! Selamat datang di universe kecil buatan Arsen. Isinya nggak banyak, tapi semuanya tentang kamu.',
+  'Hai Lili! Selamat datang di universe kecil buatan Arsen. Isinya nggak banyak, tapi semuanya tentang kamu.',
   'Eits, ketahuan buka website ini! Ya udah, sekalian aja. Selamat datang di Arsen\'s Little Universe!',
   'Halo halo! Kamu resmi jadi warga kehormatan universe ini. Fasilitas: nasihat ngawur, Livia, dan Arsen.',
   'Selamat datang! Website ini 100% bebas iklan, 100% penuh sayang. Dibuat dengan begadang dan cinta.',

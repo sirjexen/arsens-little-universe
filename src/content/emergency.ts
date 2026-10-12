@@ -11,7 +11,7 @@ export const EMERGENCY: {
     'DARURAT! Seseorang kangen berat dan butuh Arsen SEGERA!',
     'ALARM KANGEN BERBUNYI! Ini bukan latihan!',
     'TERDETEKSI: Rindu akut stadium lanjut. Penanganan: Arsen.',
-    'BREAKING NEWS: Livia resmi dinyatakan kangen!',
+    'BREAKING NEWS: Lili resmi dinyatakan kangen!',
   ],
   comforts: [
     'Tenang, tenang. Tarik napas. Arsen udah dikasih tahu dan lagi OTW... secara batin.',

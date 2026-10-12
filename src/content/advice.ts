@@ -99,7 +99,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'capek-9',
     mood: 'capek',
-    text: 'Pijit? Arsen bisa pijit... walaupun skill-nya setara tukang urut abal-abal. Tapi niatnya tulus.',
+    text: 'Pijit, Lili? Arsen bisa pijit... walaupun skill-nya setara tukang urut abal-abal. Tapi niatnya tulus.',
   },
   {
     id: 'capek-10',
@@ -131,7 +131,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'ngambek-5',
     mood: 'ngambek',
-    text: 'Kamu ngambek mukanya tetap lucu, tahu nggak? Makanya Arsen kadang... eh, nggak jadi. Lanjut ngambek aja.',
+    text: 'Lili ngambek mukanya tetap lucu, tahu nggak? Makanya Arsen kadang... eh, nggak jadi. Lanjut ngambek aja.',
   },
   {
     id: 'ngambek-6',
@@ -203,7 +203,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'overthinking-9',
     mood: 'overthinking',
-    text: 'Tarik napas. Hembuskan. Sekali lagi. Nah, kan masih bisa napas. Berarti masih aman.',
+    text: 'Tarik napas. Hembuskan. Sekali lagi. Nah, Lili, kan masih bisa napas. Berarti masih aman.',
   },
   {
     id: 'overthinking-10',
@@ -220,7 +220,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'kangen-2',
     mood: 'kangen',
-    text: 'Kangen itu tanda sayang yang lagi antre ketemu. Sabar ya, antreannya bentar lagi sampai.',
+    text: 'Kangen itu tanda sayang yang lagi antre ketemu. Sabar ya, Lili, antreannya bentar lagi sampai.',
   },
   {
     id: 'kangen-3',
@@ -267,7 +267,7 @@ export const ADVICE: Advice[] = [
   {
     id: 'seneng-1',
     mood: 'seneng',
-    text: 'Lagi seneng? Pertahankan! Senyum kamu tuh kayak wifi gratis: bikin semua orang di sekitar ikut happy.',
+    text: 'Lagi seneng, Lili? Pertahankan! Senyum kamu tuh kayak wifi gratis: bikin semua orang di sekitar ikut happy.',
   },
   {
     id: 'seneng-2',

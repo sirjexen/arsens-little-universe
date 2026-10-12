@@ -5,6 +5,8 @@ import Darurat from './scenes/Darurat';
 import Kebun from './scenes/Kebun';
 import Surat from './scenes/Surat';
 import Meteran from './scenes/Meteran';
+import Game from './scenes/Game';
+import Pantun from './scenes/Pantun';
 import EggToasts from './easter/EggToasts';
 import EasterLayer from './easter/EasterLayer';
 import Arsen from './components/Arsen';
@@ -12,7 +14,7 @@ import { Glyph, type GlyphKind } from './components/icons';
 import { Doodle, useLocalStorage } from './components/ui';
 import { sfx } from './lib/sound';
 
-type Scene = 'welcome' | 'nasihat' | 'darurat' | 'kebun' | 'surat' | 'meter';
+type Scene = 'welcome' | 'nasihat' | 'darurat' | 'kebun' | 'surat' | 'meter' | 'game' | 'pantun';
 
 interface Tab {
   id: Exclude<Scene, 'welcome'>;
@@ -26,6 +28,8 @@ const TABS: Tab[] = [
   { id: 'kebun', label: 'Kebun', icon: 'sprout' },
   { id: 'surat', label: 'Surat', icon: 'envelope' },
   { id: 'meter', label: 'Gemes', icon: 'heart' },
+  { id: 'game', label: 'Game', icon: 'dice' },
+  { id: 'pantun', label: 'Pantun', icon: 'sparkle' },
 ];
 
 const SCENE_TITLES: Record<Exclude<Scene, 'welcome'>, string> = {
@@ -34,6 +38,8 @@ const SCENE_TITLES: Record<Exclude<Scene, 'welcome'>, string> = {
   kebun: 'Kebun Interaktif',
   surat: 'Letters for Livia',
   meter: 'Pengukur Kegemesan',
+  game: 'Pasangan Bunga',
+  pantun: 'Pantun Arsen',
 };
 
 function SceneView({ scene }: { scene: Exclude<Scene, 'welcome'> }) {
@@ -48,6 +54,10 @@ function SceneView({ scene }: { scene: Exclude<Scene, 'welcome'> }) {
       return <Surat />;
     case 'meter':
       return <Meteran />;
+    case 'game':
+      return <Game />;
+    case 'pantun':
+      return <Pantun />;
   }
 }
 
@@ -169,7 +179,7 @@ export default function App() {
         className="bg-paper/95 border-ink fixed inset-x-0 bottom-0 z-40 border-t-2 backdrop-blur md:hidden"
         style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       >
-        <div className="grid grid-cols-5">
+        <div className="grid grid-cols-7">
           {TABS.map((t) => {
             const active = scene === t.id;
             return (
